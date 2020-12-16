@@ -8,7 +8,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo\\\"Error\"\\&& exit 1"
+    "test": "echo\\\"Error\"\\&& exit 1",
+    "start": "node serwer02.js"
   },
   "repository": {
     "type": "git",
