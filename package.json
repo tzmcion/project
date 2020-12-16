@@ -1,0 +1,26 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "projekt",
+  "main": "serwer02.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo\\\"Error\"\\&& exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tzmcion/project.git"
+  },
+  "keywords": [
+    "repo"
+  ],
+  "author": "tymoteusz a",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tzmcion/project/issues"
+  },
+  "homepage": "https://github.com/tzmcion/project#readme"
+}

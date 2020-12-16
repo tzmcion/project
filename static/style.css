@@ -1,0 +1,63 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.head {
+    width: 100%;
+    height: 75px;
+    background-color: brown;
+    position: fixed;
+}
+
+.head>ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 450px;
+    height: 100%;
+    align-items: center;
+    color: white;
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.main {
+    width:80%;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.breakpoint {
+    height: 75px;
+    width: 100%;
+}
+
+.Panel{
+    width:100%;
+    height:50px;
+    background-color: yellow;
+}
+
+.Panel>ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 450px;
+    height: 100%;
+    align-items: center;
+    color: white;
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+tr{
+    border: 1px solid black;
+}
+
+table,td,tr{
+    text-align: center;
+}
+
