@@ -1,6 +1,8 @@
 
 var users = [];
 
+var is_logged_in = false;
+
 const fs = require('fs');
 
 for (let a = 0; a < 6; a++) {
@@ -243,22 +245,16 @@ app.get("/login", function (req, res) {
 })
 
 app.get("/logout", function (req, res) {
-    users.map(e => {
-        if (e.user_ip === req.connection.remoteAddress && e.logon) {
-            e.logon = false;
-        }
-    })
-    res.sendFile(path.join(__dirname + "/static/index.html"))
+    is_logged_in =
+        res.sendFile(path.join(__dirname + "/static/index.html"))
 })
 
 app.get("/admin", function (req, res) {
     let toresend;
-    users.map(e => {
-        if (e.user_ip === req.connection.remoteAddress && e.logon) {
-            toresend = "/static/adminlogged.html"
-        }
-    })
-    if (toresend !== "/static/adminlogged.html") {
+    if (is_logged_in) {
+        toresend = "/static/adminlogged.html"
+    }
+    else {
         toresend = "/static/admin.html";
     }
     res.sendFile(path.join(__dirname + toresend))
@@ -309,6 +305,7 @@ app.post("/HandleLogin", function (req, res) {
         if (user.user_name === req.body.login && user.user_password === req.body.password) {
             user.logon = true;
             logged = "si";
+            is_logged_in = true;
         }
     })
     console.log(users);
@@ -319,41 +316,28 @@ app.post("/HandleLogin", function (req, res) {
 
 
 app.get("/sort", function (req, res) {
-    let toresend = true;;
-    users.map(e => {
-        if (e.user_ip === req.connection.remoteAddress && e.logon) {
-            let issmall = req.query.which === 'true' ? true : false;
-            res.end(HTMLtable_sorted(users, issmall));
-            toresend = false;
-        }
-    })
-    if (toresend) {
+    if (is_logged_in) {
+        let issmall = req.query.which === 'true' ? true : false;
+        res.end(HTMLtable_sorted(users, issmall));
+    }
+    else {
         res.sendFile(path.join(__dirname + "/static/admin.html"));
     }
 })
 
 app.get("/gender", function (req, res) {
-    let toresend = true;
-    users.map(e => {
-        if (e.user_ip === req.connection.remoteAddress && e.logon) {
-            res.end(HTMLtable_gender(users));
-            toresend = false;
-        }
-    })
-    if (toresend) {
+    if (is_logged_in) {
+        res.end(HTMLtable_gender(users));
+    }
+    else {
         res.sendFile(path.join(__dirname + "/static/admin.html"));
     }
 })
 
 app.get("/show", function (req, res) {
-    let toresend = true;
-    users.map(e => {
-        if (e.user_ip === req.connection.remoteAddress && e.logon) {
-            res.end(HTMLtable_from_Array_of_Objects(users));
-            toresend = false;
-        }
-    })
-    if (toresend) {
+    if (is_logged_in) {
+        res.end(HTMLtable_from_Array_of_Objects(users));
+    } else {
         res.sendFile(path.join(__dirname + "/static/admin.html"));
     }
 })
